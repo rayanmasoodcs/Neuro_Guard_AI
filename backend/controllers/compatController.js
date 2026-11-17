@@ -25,45 +25,80 @@ async function proxyToML(endpoint, payload) {
 
 // ─── EEG Prediction (single patient) ─────────────────────────────────────────
 
+// Shape a non-result (cannot assess / service offline) in the fields the Flutter client reads,
+// so the client shows the reason instead of falling back to its own on-device guess.
+function noResult(label, reason, extra = {}) {
+  return {
+    seizure_type: label,
+    confidence: 0,
+    risk_level: 'Unknown',
+    eeg_patterns: [reason],
+    analysis_summary: `${label}: ${reason}`,
+    all_scores: {},
+    ...extra,
+  };
+}
+
 exports.predictEEG = async (req, res) => {
   try {
-    const payload = {
-      eeg_file: req.body.eeg_file || null,
-      eeg_filename: req.body.eeg_filename || req.body.eeg_file_name || 'upload.csv',
-      sensor_data: req.body.sensor_data || [],
-      user_id: req.user?.id,
-    };
-
-    // Try Python ML service first
-    if (ML_URL) {
-      const mlResult = await proxyToML('/predict', payload);
-      if (mlResult && mlResult.status === 'success') {
-        // Persist to DB
-        await Prediction.create({
-          userId: req.user?.id,
-          predictionResult: mlResult.prediction?.seizure_type || mlResult.seizure_type || 'Unknown',
-          confidence: mlResult.prediction?.confidence ?? mlResult.confidence ?? 0,
-          riskLevel: mlResult.prediction?.risk_level || mlResult.risk_level || 'Unknown',
-          modelVersion: mlResult.model_version || 'production',
-          source: 'ml_service',
-        }).catch(() => {}); // non-fatal
-
-        return res.json({
-          status: 'success',
-          prediction: mlResult.prediction || mlResult,
-          model_backend: 'python_ml',
-        });
-      }
+    const filename = req.body.eeg_filename || req.body.eeg_file_name || 'upload.csv';
+    if (!req.body.eeg_file) {
+      return res.json({ status: 'success', model_backend: 'none',
+        prediction: noResult('Cannot assess', 'No EEG file was provided.') });
     }
 
-    // Fallback: heuristic (labelled as such)
-    const result = heuristic({ sensorReadings: req.body.sensor_data || [], eegFile: req.body.eeg_file || null });
-    return res.json({
-      status: 'success',
-      prediction: result,
-      model_backend: 'heuristic_fallback',
-      note: 'ML service unavailable — result is heuristic only. Clinical use requires ML_SERVICE_URL.',
-    });
+    // EEG files are only analysed by the trained model; there is no heuristic fallback,
+    // because heart rate or motion cannot stand in for EEG (spec §1, NFR-15).
+    let ml = null;
+    try {
+      ml = await proxyToML('/predict_eeg', {
+        eeg_file: req.body.eeg_file,
+        eeg_filename: filename,
+        sampling_rate: req.body.sampling_rate,
+      });
+    } catch (err) {
+      console.error('[compatController.predictEEG] ML service unreachable:', err.message);
+    }
+    if (!ml || !ml.status) {
+      return res.json({ status: 'success', model_backend: 'unavailable',
+        prediction: noResult('Analysis unavailable', 'The EEG analysis service is offline. No result was produced.') });
+    }
+    if (ml.status !== 'SUCCESS') {
+      return res.json({ status: 'success', model_backend: 'python_ml',
+        prediction: noResult('Cannot assess', ml.reason || 'The file could not be analysed.', { model_version: ml.model_version }) });
+    }
+
+    const detected = ml.result === 'seizure_like_activity';
+    const maxP = ml.max_window_probability;
+    const ev = ml.evaluation?.event_metrics || {};
+    const patterns = detected
+      ? ml.flagged_intervals.map((f) => `Flagged ${f.start_s}–${f.end_s} s (peak probability ${f.max_probability})`)
+      : ['No interval met the alarm rule'];
+    const prediction = {
+      seizure_type: detected ? 'Seizure-like activity' : 'No seizure-like activity',
+      confidence: detected ? maxP : 1 - maxP,
+      risk_level: detected ? 'High' : 'Low',
+      eeg_patterns: patterns,
+      analysis_summary:
+        `${ml.clinical_finding}. Analysed ${ml.duration_s} s, ${ml.channels.length} channels at ${ml.sampling_rate_hz} Hz ` +
+        `(${ml.n_windows} windows). Model ${ml.model_version}, evaluated leave-one-patient-out on CHB-MIT: ` +
+        `${ev.detected}/${ev.seizures} seizures detected, ${ev.fa_per_hour} false alarms/hour. ` +
+        `${ml.warnings.length ? 'Warnings: ' + ml.warnings.join('; ') + '. ' : ''}${ml.disclaimer}`,
+      all_scores: { 'Seizure-like': maxP, 'No seizure-like': 1 - maxP },
+      flagged_intervals: ml.flagged_intervals,
+      window_probabilities: ml.window_probabilities,
+      model_version: ml.model_version,
+    };
+
+    await Prediction.create({
+      userId: req.user?.id,
+      seizureDetected: detected,
+      seizureType: detected ? 'Unspecified Seizure' : 'Unknown',
+      confidenceScore: prediction.confidence,
+      alertTriggered: detected,
+    }).catch((err) => console.error('[compatController.predictEEG] could not store prediction:', err.message)); // non-fatal
+
+    return res.json({ status: 'success', prediction, model_backend: 'python_ml' });
   } catch (e) {
     console.error('[compatController.predictEEG]', e.message);
     return res.status(500).json({ status: 'error', message: 'EEG prediction failed.' });

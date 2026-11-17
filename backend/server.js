@@ -18,7 +18,9 @@ if (!process.env.CORS_ORIGINS) {
   console.error('[CRITICAL SECURITY ERROR] CORS_ORIGINS environment variable is missing. Refusing to start.');
   process.exit(1);
 }
-app.use(cors({ origin: process.env.CORS_ORIGINS.split(',') }));
+// An array entry of '*' is matched literally by `cors`, so the wildcard needs its own case.
+const corsOrigins = process.env.CORS_ORIGINS.split(',').map((o) => o.trim());
+app.use(cors({ origin: corsOrigins.includes('*') ? '*' : corsOrigins }));
 app.use(express.json({ limit: '50mb' }));
 
 // Health check ML Service
@@ -56,9 +58,11 @@ const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const clinicalRoutes = require('./routes/clinicalRoutes');
 const seizureRoutes = require('./routes/seizureRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Global endpoint mappings (supporting root & /api/seizure aliases)
 app.use('/', authRoutes);
+app.use('/', adminRoutes);
 app.use('/', patientRoutes);
 app.use('/', clinicalRoutes);
 app.use('/api/seizure', seizureRoutes);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'package:neuroguard_ai/models/seizure_prediction_model.dart';
 import 'package:neuroguard_ai/services/medical_knowledge_base.dart';
 import 'package:neuroguard_ai/services/medical_report_generator_service.dart';

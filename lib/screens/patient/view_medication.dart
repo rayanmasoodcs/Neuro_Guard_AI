@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neuroguard_ai/config/app_config.dart';
 // ignore_for_file: use_build_context_synchronously
 import 'package:neuroguard_ai/l10n/app_localizations.dart';
-import 'package:http/http.dart' as http;
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'dart:convert';
 import '../../responsive/responsive.dart';
 import '../../services/global_refresh_notifier.dart';

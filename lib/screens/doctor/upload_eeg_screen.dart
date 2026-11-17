@@ -104,6 +104,7 @@ class _UploadEEGScreenState extends State<UploadEEGScreen> {
       } else {
         // Single patient prediction
         final result = await PredictionService().predictFromEEGFile(
+          userId: 1,
           fileBytes: uploadedBytes!,
           fileName: uploadedFileName!,
           eegData: [],

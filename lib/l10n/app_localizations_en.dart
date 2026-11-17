@@ -293,7 +293,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emergencyStat => 'Emergency';
 
   @override
-  String get aiAccuracyStat => 'AI Accuracy';
+  String get aiAccuracyStat => 'Seizures Detected (tested)';
 
   @override
   String get aiSummary => 'AI Summary';
@@ -303,13 +303,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiPredictionSubtitle =>
-      'No high-risk seizure predicted in the next few hours.';
+      'Upload an EEG recording to flag seizure-like activity for review.';
 
   @override
   String get todaysAnalysis => 'Today\'s Analysis';
 
   @override
-  String get todaysAnalysisSubtitle => '12 EEG reports processed successfully.';
+  String get todaysAnalysisSubtitle =>
+      'EEG analyses are stored with the model version used.';
 
   @override
   String get emergencyAlerts => 'Emergency Alerts';

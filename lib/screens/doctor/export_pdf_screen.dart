@@ -68,7 +68,7 @@ class _ExportPdfScreenState extends State<ExportPdfScreen> {
                     children: [
                       CheckboxListTile(
                         value: includePatientInfo,
-                        activeThumbColor: Color(0xff0B8F55),
+                        activeColor: Color(0xff0B8F55),
                         title: Text("Patient Information"),
                         secondary: Icon(Icons.person),
                         onChanged: (value) {
@@ -82,7 +82,7 @@ class _ExportPdfScreenState extends State<ExportPdfScreen> {
 
                       CheckboxListTile(
                         value: includeDiagnosis,
-                        activeThumbColor: Color(0xff0B8F55),
+                        activeColor: Color(0xff0B8F55),
                         title: Text("AI Diagnosis"),
                         secondary: Icon(Icons.psychology),
                         onChanged: (value) {
@@ -96,7 +96,7 @@ class _ExportPdfScreenState extends State<ExportPdfScreen> {
 
                       CheckboxListTile(
                         value: includeEEGGraphs,
-                        activeThumbColor: Color(0xff0B8F55),
+                        activeColor: Color(0xff0B8F55),
                         title: Text("EEG Graphs"),
                         secondary: Icon(Icons.show_chart),
                         onChanged: (value) {
@@ -109,7 +109,7 @@ class _ExportPdfScreenState extends State<ExportPdfScreen> {
 
                       CheckboxListTile(
                         value: includeDoctorNotes,
-                        activeThumbColor: Color(0xff0B8F55),
+                        activeColor: Color(0xff0B8F55),
                         title: Text("Doctor Notes"),
                         secondary: Icon(Icons.note_alt_outlined),
                         onChanged: (value) {

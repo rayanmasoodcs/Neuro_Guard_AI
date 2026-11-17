@@ -4,12 +4,14 @@ import 'signup_screen.dart';
 import '../../responsive/responsive.dart';
 // Importing the API service file to communicate with MongoDB
 import '../../database/api_service.dart';
+import '../../services/firebase_auth_helper.dart';
 import '../../services/language_service.dart';
 import 'package:neuroguard_ai/l10n/app_localizations.dart';
 
 // Dynamically target and import your dashboard views based on your project file structure
 import '../doctor/doctor_dashboard.dart';
 import '../patient/patient_main_dashboard.dart';
+import '../admin/admin_dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   final LanguageProvider languageProvider;
@@ -24,6 +26,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
   bool obscurePassword = true;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Every logout path navigates here, so arriving means the session has ended.
+    FirebaseAuthHelper.clearSession();
+  }
 
   final List<Map<String, String>> _googleAccounts = [
     {
@@ -99,6 +108,16 @@ class _LoginScreenState extends State<LoginScreen> {
             MaterialPageRoute(
               builder: (context) => DoctorDashboard(
                 doctorData: userData,
+                languageProvider: widget.languageProvider,
+              ),
+            ),
+          );
+        } else if (role == 'admin') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AdminDashboard(
+                adminData: userData,
                 languageProvider: widget.languageProvider,
               ),
             ),

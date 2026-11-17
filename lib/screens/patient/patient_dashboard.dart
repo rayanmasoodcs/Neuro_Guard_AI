@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import '../doctor/upload_eeg_screen.dart';
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'dart:convert';
 import '../../responsive/responsive.dart';
 import 'view_medication.dart';
@@ -67,7 +68,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     final String activeId = _activeId;
 
     try {
-      final headers = await FirebaseAuthHelper.getAuthenticatedHeaders();
+      final headers = await FirebaseAuthHelper.getAuthHeaders();
       // Fetch Medications, Reminders, and Prediction in parallel
       final medResponse = await http.get(
         Uri.parse("${AppConfig.baseUrl}/get_medications/$activeId"),
@@ -602,6 +603,16 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       spacing: 15,
                       runSpacing: 15,
                       children: [
+                        FilledButton.icon(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UploadEEGScreen(),
+                            ),
+                          ).then((_) => _fetchDynamicDashboardMetrics()),
+                          icon: const Icon(Icons.upload_file),
+                          label: const Text("Upload EEG"),
+                        ),
                         FilledButton.icon(
                           onPressed: () => Navigator.push(
                             context,

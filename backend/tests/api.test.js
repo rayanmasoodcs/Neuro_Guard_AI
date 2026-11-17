@@ -1,5 +1,12 @@
 const request = require('supertest');
+const mongoose = require('mongoose');
 const app = require('../server');
+const { connectDB } = require('../config/db');
+
+// server.js only connects to MongoDB when run directly, so the suite connects itself.
+jest.setTimeout(30000);
+beforeAll(async () => { await connectDB(); });
+afterAll(async () => { await mongoose.disconnect(); });
 
 describe('NeuroGuard AI Express & MongoDB API Verification Suite', () => {
 
@@ -89,7 +96,8 @@ describe('NeuroGuard AI Express & MongoDB API Verification Suite', () => {
   });
 
   it('POST /api/seizure/store_sensor_reading - should log wearable telemetry', async () => {
-    const res = await request(app).post('/api/seizure/store_sensor_reading').send({
+    const res = await request(app).post('/api/seizure/store_sensor_reading')
+      .set('Authorization', `Bearer ${testToken}`).send({
       user_id: testUserId,
       heart_rate: 85,
       body_temperature: 36.6,

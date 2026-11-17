@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema(
       minlength: [8, 'Password must be at least 8 characters long'],
       validate: {
         validator: function (v) {
+          // Re-saving a user re-validates the stored bcrypt hash; only plaintext needs the complexity check.
+          if (/^\$2[aby]\$\d{2}\$/.test(v)) return true;
           return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(v);
         },
         message: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'

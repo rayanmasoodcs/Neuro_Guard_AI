@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'dart:convert';
 import '../../responsive/responsive.dart';
 import 'package:neuroguard_ai/l10n/app_localizations.dart';
@@ -23,6 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   // Live dashboard states initialized with safe fallbacks
   int totalPatients = 0;
   int emergencyAlerts = 0;
+  int eegReports = 0;
+  double? modelDetectionRate;
   List<dynamic> recentPatientsList = [];
   bool isLoadingStats = true;
   bool isLoadingPatients = true;
@@ -55,6 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {
                 totalPatients = data['total_patients'] ?? 0;
                 emergencyAlerts = data['emergency_count'] ?? 0;
+                eegReports = data['eeg_reports'] ?? 0;
+                modelDetectionRate = (data['model_detection_rate'] as num?)?.toDouble();
               });
             }
           }
@@ -241,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _statCard(
                         title: l10n.eegReportsStat,
-                        value: "89",
+                        value: isLoadingStats ? "..." : eegReports.toString(),
                         icon: Icons.description_rounded,
                         color: Color(0xFF0B8F55),
                       ),
@@ -255,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _statCard(
                         title: l10n.aiAccuracyStat,
-                        value: "97%",
+                        value: modelDetectionRate == null ? "n/a" : "${(modelDetectionRate! * 100).round()}%",
                         icon: Icons.psychology_rounded,
                         color: Color(0xFF0B8F55),
                       ),

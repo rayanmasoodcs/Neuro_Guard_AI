@@ -1,4 +1,5 @@
-const { Patient, User, Medication } = require('../models');
+const { Patient, User, Medication, Prediction } = require('../models');
+const axios = require('axios');
 
 /**
  * Add or update patient chart record
@@ -177,11 +178,21 @@ exports.getDashboardStats = async (req, res) => {
 
     const totalPatients = await Patient.countDocuments(query);
     const criticalCount = await Patient.countDocuments({ ...query, medicalCondition: { $regex: /critical|severe/i } });
+    const eegReports = await Prediction.countDocuments({});
+
+    // Measured performance of the deployed model (null when the ML service is offline).
+    let modelDetectionRate = null;
+    try {
+      const health = await axios.get(`${process.env.ML_SERVICE_URL}/health`, { timeout: 3000 });
+      modelDetectionRate = health.data?.evaluation?.event_metrics?.event_sensitivity ?? null;
+    } catch (e) { /* service offline */ }
 
     return res.status(200).json({
       status: 'success',
       total_patients: totalPatients,
       critical_count: criticalCount,
+      eeg_reports: eegReports,
+      model_detection_rate: modelDetectionRate,
       emergency_alerts: criticalCount,
       active_monitoring: totalPatients,
     });

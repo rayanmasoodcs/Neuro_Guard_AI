@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neuroguard_ai/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'dart:convert';
 import '../../services/global_refresh_notifier.dart';
 import 'package:neuroguard_ai/config/app_config.dart';

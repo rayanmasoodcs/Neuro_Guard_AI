@@ -671,7 +671,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiAccuracyStat.
   ///
   /// In en, this message translates to:
-  /// **'AI Accuracy'**
+  /// **'Seizures Detected (tested)'**
   String get aiAccuracyStat;
 
   /// No description provided for @aiSummary.
@@ -689,7 +689,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiPredictionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'No high-risk seizure predicted in the next few hours.'**
+  /// **'Upload an EEG recording to flag seizure-like activity for review.'**
   String get aiPredictionSubtitle;
 
   /// No description provided for @todaysAnalysis.
@@ -701,7 +701,7 @@ abstract class AppLocalizations {
   /// No description provided for @todaysAnalysisSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'12 EEG reports processed successfully.'**
+  /// **'EEG analyses are stored with the model version used.'**
   String get todaysAnalysisSubtitle;
 
   /// No description provided for @emergencyAlerts.

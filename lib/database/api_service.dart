@@ -1,6 +1,7 @@
-import 'package:http/http.dart' as http;
+import 'package:neuroguard_ai/services/api_http.dart' as http;
 import 'dart:convert';
 import 'package:neuroguard_ai/config/app_config.dart';
+import 'package:neuroguard_ai/services/firebase_auth_helper.dart';
 
 class ApiService {
   // Base URL for Node.js + MongoDB backend server
@@ -40,6 +41,9 @@ class ApiService {
       final Map<String, dynamic> responseData = jsonDecode(response.body);
 
       if (response.statusCode == 201 || responseData['status'] == 'success') {
+        if (responseData['token'] is String) {
+          await FirebaseAuthHelper.storeAuthToken(responseData['token']);
+        }
         return responseData;
       } else {
         return {
@@ -75,6 +79,9 @@ class ApiService {
       final Map<String, dynamic> responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
+        if (responseData['token'] is String) {
+          await FirebaseAuthHelper.storeAuthToken(responseData['token']);
+        }
         return responseData;
       } else {
         return {

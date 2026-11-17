@@ -18,7 +18,11 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ status: 'error', message: 'Email address already registered.' });
     }
 
-    const userRole = (role === 'doctor' || role === 'Doctor') ? 'doctor' : 'patient';
+    // Doctor (and admin) accounts are created by the superadmin; public signup is patient-only.
+    if (role && String(role).toLowerCase() !== 'patient') {
+      return res.status(403).json({ status: 'error', message: 'Doctor accounts are created by an administrator. Please contact your admin.' });
+    }
+    const userRole = 'patient';
 
     const newUser = new User({
       name,

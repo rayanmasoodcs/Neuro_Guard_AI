@@ -93,3 +93,15 @@ firebase_credentials.json
 google-services.json
 GoogleService-Info.plist
 serviceAccountKey.json
+
+# Node dependencies (run `npm install` in backend/)
+node_modules/
+
+# Downloaded EEG datasets (get them with ml_models/training/01_download_chbmit.py)
+data/chbmit/chb*/
+data/chbmit/seizure_files.txt
+*.edf.part
+
+# Dev config is committed on purpose; it must never contain real cloud credentials (public repo)
+!backend/.env
+!ml_models/seizure_eeg_model.joblib
