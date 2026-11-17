@@ -1,0 +1,110 @@
+{
+  "manifest_version": "1.0",
+  "created_at": "2026-09-03",
+  "mission": "Mission 22 — Dataset Acquisition & Compatibility Analysis",
+  "datasets": [
+    {
+      "id": "chbmit",
+      "name": "CHB-MIT Scalp EEG Database",
+      "source": "PhysioNet",
+      "doi": "10.13026/C2K01R",
+      "version": "1.0.0",
+      "url": "https://physionet.org/content/chbmit/1.0.0/",
+      "license": "Open Data Commons Attribution License v1.0 (ODC-By)",
+      "access_type": "OPEN — No registration required. Freely downloadable via HTTPS.",
+      "local_path": "data/chbmit/",
+      "verified_files": [
+        "data/chbmit/chb01-summary.txt",
+        "data/chbmit/chb01_03.edf"
+      ],
+      "verified_download_date": "2026-09-03",
+      "patients": {
+        "count": 23,
+        "ids": ["chb01", "chb02", "chb03", "chb04", "chb05", "chb06", "chb07", "chb08", "chb09", "chb10", "chb11", "chb12", "chb13", "chb14", "chb15", "chb16", "chb17", "chb18", "chb19", "chb20", "chb21", "chb22", "chb24"]
+      },
+      "demographics": {
+        "population": "Pediatric (ages 1.5–22 years)",
+        "institution": "Boston Children's Hospital"
+      },
+      "recordings": {
+        "total_files_approx": "686 EDF files across 23 patients",
+        "total_duration_approx": "~984 hours",
+        "seizure_events": 198
+      },
+      "format": {
+        "file_type": "European Data Format (EDF)",
+        "annotation_format": "Text summary files (*-summary.txt) per patient",
+        "seizure_label_format": "Seizure Start Time / Seizure End Time in seconds"
+      },
+      "signal": {
+        "sampling_rate_hz": 256,
+        "channels": 23,
+        "montage_type": "Bipolar Montage",
+        "channel_labels": ["FP1-F7","F7-T7","T7-P7","P7-O1","FP1-F3","F3-C3","C3-P3","P3-O1","FP2-F4","F4-C4","C4-P4","P4-O2","FP2-F8","F8-T8","T8-P8","P8-O2","FZ-CZ","CZ-PZ","P7-T7","T7-FT9","FT9-FT10","FT10-T8","T8-P8"]
+      },
+      "seizure_types": {
+        "annotation_granularity": "Binary only (Seizure/Non-Seizure). Subtype labels NOT systematically provided in summary files.",
+        "task_a_binary": true,
+        "task_b_multiclass": false
+      },
+      "known_limitations": [
+        "23 channel count — some recordings may have fewer active channels.",
+        "No systematic subtype annotations (Focal vs Generalized) in summary files.",
+        "Some patients have very few seizure events (chb12 has only 3 seizures).",
+        "chb24 uses different channel configuration from other patients."
+      ]
+    },
+    {
+      "id": "siena",
+      "name": "Siena Scalp EEG Dataset",
+      "source": "PhysioNet",
+      "doi": "10.13026/5d4a-j060",
+      "version": "1.0.0",
+      "url": "https://physionet.org/content/siena-scalp-eeg/1.0.0/",
+      "license": "Open Data Commons Attribution License v1.0 (ODC-By)",
+      "access_type": "OPEN — No registration required. Freely downloadable via HTTPS.",
+      "local_path": "data/siena/",
+      "verified_files": [
+        "data/siena/PN00-seizures.txt"
+      ],
+      "verified_download_date": "2026-09-03",
+      "patients": {
+        "count": 14,
+        "ids": ["PN00","PN01","PN03","PN05","PN06","PN07","PN09","PN10","PN11","PN12","PN13","PN14","PN16","PN17"]
+      },
+      "demographics": {
+        "population": "Adult (ages 20–71 years)",
+        "institution": "University of Siena, Italy"
+      },
+      "recordings": {
+        "total_files_approx": "41 EDF files across 14 patients",
+        "total_duration_approx": "~128 hours",
+        "seizure_events_approx": "47 recorded seizures"
+      },
+      "format": {
+        "file_type": "European Data Format (EDF)",
+        "annotation_format": "Text seizure list files (Seizures-list-PN*.txt) per patient",
+        "seizure_label_format": "Clock-time start/end (HH.MM.SS) per EDF file"
+      },
+      "signal": {
+        "sampling_rate_hz": 512,
+        "channels": 29,
+        "montage_type": "Monopolar (Referenced) Montage",
+        "channel_labels_sample_pn00": ["Fp1","F3","C3","P3","O1","F7","T3","T5","Fc1","Fc5","Cp1","Cp5","F9","Fz","Cz","Pz","Fp2","F4","C4","P4","O2","F8","T4","T6","Fc2","Fc6","Cp2","Cp6","F10"],
+        "non_eeg_channels": ["EKG 1", "EKG 2"]
+      },
+      "seizure_types": {
+        "annotation_granularity": "Binary only (Seizure/Non-Seizure). Adult focal onset seizures.",
+        "task_a_binary": true,
+        "task_b_multiclass": false
+      },
+      "known_limitations": [
+        "512 Hz sampling rate requires anti-aliased downsampling to 256 Hz for CHB-MIT harmonization.",
+        "29 monopolar channels vs 23 bipolar CHB-MIT channels — direct comparison impossible without re-referencing.",
+        "Annotation uses clock-time strings, not seconds offsets — requires timestamp parsing relative to EDF start.",
+        "Smaller cohort (14 patients, 47 seizures) — limited statistical power for cross-patient generalization.",
+        "Adult-only population introduces demographic domain shift vs CHB-MIT pediatric population."
+      ]
+    }
+  ]
+}

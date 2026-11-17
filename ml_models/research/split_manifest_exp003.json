@@ -1,0 +1,29 @@
+{
+  "protocol": "Protocol A \u2014 Patient-Independent Holdout",
+  "seed": 42,
+  "total_windows": 600,
+  "train": {
+    "patients": [
+      "chb01",
+      "chb02"
+    ],
+    "windows": 400,
+    "seizure_windows": 20,
+    "non_seizure_windows": 380
+  },
+  "validation": {
+    "patients": [],
+    "windows": 0,
+    "seizure_windows": 0,
+    "non_seizure_windows": 0
+  },
+  "test": {
+    "patients": [
+      "chb03"
+    ],
+    "windows": 200,
+    "seizure_windows": 20,
+    "non_seizure_windows": 180
+  },
+  "created_at": "2026-09-03"
+}

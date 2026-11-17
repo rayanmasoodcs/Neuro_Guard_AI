@@ -1,0 +1,43 @@
+{
+  "experiment_id": "EXP_002_RANDOM_FOREST",
+  "confusion_matrix": [
+    [
+      180,
+      0
+    ],
+    [
+      0,
+      20
+    ]
+  ],
+  "classes": [
+    0,
+    1
+  ],
+  "class_names": [
+    "non_seizure",
+    "seizure"
+  ],
+  "top_features": [
+    [
+      "bp_alpha_rel_ch_mean",
+      0.17247592257077232
+    ],
+    [
+      "bp_theta_rel_ch_mean",
+      0.15825818791581492
+    ],
+    [
+      "bp_alpha_rel_ch_std",
+      0.14097521795044
+    ],
+    [
+      "bp_beta_rel_ch_std",
+      0.08822803739318692
+    ],
+    [
+      "bp_theta_rel_ch_std",
+      0.06810513149008897
+    ]
+  ]
+}

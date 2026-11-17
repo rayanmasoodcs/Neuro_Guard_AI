@@ -1,0 +1,52 @@
+{
+  "label_map": {
+    "0": "0",
+    "1": "1",
+    "2": "2",
+    "3": "3"
+  },
+  "classes": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "n_classes": 4,
+  "feature_names": [
+    "feature_0",
+    "feature_1",
+    "feature_2",
+    "feature_3",
+    "feature_4",
+    "feature_5",
+    "feature_6",
+    "feature_7",
+    "feature_8",
+    "feature_9",
+    "feature_10",
+    "feature_11",
+    "feature_12",
+    "feature_13",
+    "feature_14",
+    "feature_15"
+  ],
+  "n_features_original": 16,
+  "n_features_selected": 14,
+  "model_name": "SVC",
+  "model_version": "v2",
+  "training_date": "2026-07-30T13:07:25.115074",
+  "best_params": {
+    "C": 3.4370861113902182,
+    "gamma": "auto"
+  },
+  "cv_recall_score": 0.2812142927675662,
+  "test_metrics": {
+    "accuracy": 0.325,
+    "precision_macro": 0.3123273172905526,
+    "recall_macro": 0.3192156046777356,
+    "specificity_macro": 0.7739306539899917,
+    "f1_macro": 0.29371866415215225,
+    "roc_auc": 0.5618145080921243,
+    "pr_auc": 0.3056957378830666
+  }
+}

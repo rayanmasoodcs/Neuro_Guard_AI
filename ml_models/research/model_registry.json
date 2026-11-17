@@ -1,0 +1,292 @@
+[
+  {
+    "model_id": "MODEL_BASELINE_LOGREG_V1",
+    "registered_at": "2026-09-03T15:51:24.841445",
+    "algorithm": "LogisticRegression",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/baseline_logistic_regression.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "expected_n_features": 38,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_001_BASELINE_LOGISTIC_REGRESSION",
+    "evaluation_metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "MODEL_RF_V1",
+    "registered_at": "2026-09-03T15:54:10.081447",
+    "algorithm": "RandomForestClassifier",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/random_forest_model.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "expected_n_features": 38,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_002_RANDOM_FOREST",
+    "evaluation_metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "MODEL_SVM_V1",
+    "registered_at": "2026-09-03T15:57:11.686439",
+    "algorithm": "SupportVectorClassifier",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/svm_model.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "expected_n_features": 38,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_003_SVM",
+    "evaluation_metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "MODEL_GB_V1",
+    "registered_at": "2026-09-03T15:59:20.608149",
+    "algorithm": "HistGradientBoostingClassifier",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/gradient_boosting_model.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "expected_n_features": 38,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_004_GRADIENT_BOOSTING",
+    "evaluation_metrics": {
+      "accuracy": 0.98,
+      "precision": 1.0,
+      "recall_sensitivity": 0.8,
+      "specificity": 1.0,
+      "f1_score": 0.8888888888888888,
+      "tp": 16,
+      "fp": 0,
+      "tn": 180,
+      "fn": 4,
+      "fpr": 0.0,
+      "fnr": 0.2,
+      "roc_auc": 0.9,
+      "pr_auc": 0.91,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          4,
+          16
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "MODEL_1D_CNN_V1",
+    "registered_at": "2026-09-03T16:06:04.442314",
+    "algorithm": "1D_Convolutional_Neural_Network",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/1d_cnn_model.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "raw_signal_tensor_23x1024",
+    "expected_n_features": 23552,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_005_1D_CNN",
+    "evaluation_metrics": {
+      "accuracy": 0.74,
+      "precision": 0.2037037037037037,
+      "recall_sensitivity": 0.55,
+      "specificity": 0.7611111111111111,
+      "f1_score": 0.2972972972972973,
+      "tp": 11,
+      "fp": 43,
+      "tn": 137,
+      "fn": 9,
+      "fpr": 0.2388888888888889,
+      "fnr": 0.45,
+      "roc_auc": 0.7519444444444444,
+      "pr_auc": 0.44626345207841245,
+      "confusion_matrix": [
+        [
+          137,
+          43
+        ],
+        [
+          9,
+          11
+        ]
+      ],
+      "low_confidence_count": 200,
+      "abstain_rate": 1.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "MODEL_CNN_LSTM_V1",
+    "registered_at": "2026-09-03T16:15:36.163240",
+    "algorithm": "CNN_LSTM_Hybrid",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "ml_models/research/cnn_lstm_model.joblib",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "raw_subsequence_tensor_4x23x256",
+    "expected_n_features": 23552,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_006_CNN_LSTM",
+    "evaluation_metrics": {
+      "accuracy": 0.9,
+      "precision": 0.0,
+      "recall_sensitivity": 0.0,
+      "specificity": 1.0,
+      "f1_score": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "tn": 180,
+      "fn": 20,
+      "fpr": 0.0,
+      "fnr": 1.0,
+      "roc_auc": 0.011666666666666665,
+      "pr_auc": 0.05179474013412268,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          20,
+          0
+        ]
+      ],
+      "low_confidence_count": 193,
+      "abstain_rate": 0.965,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "compatibility_status": "PRODUCTION_READY"
+  },
+  {
+    "model_id": "DECISION_OPTION_B_TRANSFORMER_NOT_JUSTIFIED",
+    "registered_at": "2026-09-03T16:21:39.932964",
+    "algorithm": "Transformer_Attention_Decision",
+    "task_type": "binary_seizure_detection",
+    "dataset_id": "chbmit",
+    "artifact_path": "EXPERIMENT_007_ADVANCED_MODEL_DECISION_REPORT.md",
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "N/A",
+    "expected_n_features": 0,
+    "label_mapping": {
+      "0": "non_seizure",
+      "1": "seizure"
+    },
+    "experiment_id": "EXP_007_ADVANCED_MODEL_DECISION",
+    "evaluation_metrics": {
+      "decision": "OPTION_B_NOT_TRAINED"
+    },
+    "compatibility_status": "ARCHITECTURAL_DECISION_RECORD"
+  }
+]

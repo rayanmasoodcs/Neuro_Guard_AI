@@ -1,0 +1,301 @@
+[
+  {
+    "experiment_id": "EXP_001_BASELINE_LOGISTIC_REGRESSION",
+    "timestamp": "2026-09-03T15:51:24.839291",
+    "model_type": "LogisticRegression",
+    "hyperparameters": {
+      "C": 1.0,
+      "max_iter": 1000,
+      "class_weight": "balanced"
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "Baseline transparent reference model (Mission 26)."
+  },
+  {
+    "experiment_id": "EXP_002_RANDOM_FOREST",
+    "timestamp": "2026-09-03T15:54:10.079348",
+    "model_type": "RandomForestClassifier",
+    "hyperparameters": {
+      "n_estimators": 100,
+      "max_depth": 15,
+      "class_weight": "balanced"
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "Random Forest experiment (Mission 27)."
+  },
+  {
+    "experiment_id": "EXP_003_SVM",
+    "timestamp": "2026-09-03T15:57:11.684640",
+    "model_type": "SVC",
+    "hyperparameters": {
+      "C": 1.0,
+      "kernel": "rbf",
+      "gamma": "scale",
+      "class_weight": "balanced"
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "metrics": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall_sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 180,
+      "fn": 0,
+      "fpr": 0.0,
+      "fnr": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "Support Vector Classifier experiment (Mission 28)."
+  },
+  {
+    "experiment_id": "EXP_004_GRADIENT_BOOSTING",
+    "timestamp": "2026-09-03T15:59:20.605118",
+    "model_type": "HistGradientBoostingClassifier",
+    "hyperparameters": {
+      "max_iter": 100,
+      "max_depth": 10,
+      "learning_rate": 0.1,
+      "class_weight": "balanced"
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "v1.0",
+    "metrics": {
+      "accuracy": 0.98,
+      "precision": 1.0,
+      "recall_sensitivity": 0.8,
+      "specificity": 1.0,
+      "f1_score": 0.8888888888888888,
+      "tp": 16,
+      "fp": 0,
+      "tn": 180,
+      "fn": 4,
+      "fpr": 0.0,
+      "fnr": 0.2,
+      "roc_auc": 0.9,
+      "pr_auc": 0.91,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          4,
+          16
+        ]
+      ],
+      "low_confidence_count": 0,
+      "abstain_rate": 0.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "Gradient Boosting experiment (Mission 29)."
+  },
+  {
+    "experiment_id": "EXP_005_1D_CNN",
+    "timestamp": "2026-09-03T16:06:04.440209",
+    "model_type": "1D_CNN",
+    "hyperparameters": {
+      "conv1_filters": 32,
+      "conv2_filters": 64,
+      "kernel_sizes": [
+        7,
+        5
+      ],
+      "dropout": 0.3,
+      "lr": 0.001
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "raw_signal_tensor_23x1024",
+    "metrics": {
+      "accuracy": 0.74,
+      "precision": 0.2037037037037037,
+      "recall_sensitivity": 0.55,
+      "specificity": 0.7611111111111111,
+      "f1_score": 0.2972972972972973,
+      "tp": 11,
+      "fp": 43,
+      "tn": 137,
+      "fn": 9,
+      "fpr": 0.2388888888888889,
+      "fnr": 0.45,
+      "roc_auc": 0.7519444444444444,
+      "pr_auc": 0.44626345207841245,
+      "confusion_matrix": [
+        [
+          137,
+          43
+        ],
+        [
+          9,
+          11
+        ]
+      ],
+      "low_confidence_count": 200,
+      "abstain_rate": 1.0,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "1D CNN deep learning experiment (Mission 30)."
+  },
+  {
+    "experiment_id": "EXP_006_CNN_LSTM",
+    "timestamp": "2026-09-03T16:15:36.159818",
+    "model_type": "CNN_LSTM",
+    "hyperparameters": {
+      "conv_filters": 32,
+      "lstm_hidden": 64,
+      "substeps": 4,
+      "dropout": 0.3,
+      "lr": 0.001
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "raw_subsequence_tensor_4x23x256",
+    "metrics": {
+      "accuracy": 0.9,
+      "precision": 0.0,
+      "recall_sensitivity": 0.0,
+      "specificity": 1.0,
+      "f1_score": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "tn": 180,
+      "fn": 20,
+      "fpr": 0.0,
+      "fnr": 1.0,
+      "roc_auc": 0.011666666666666665,
+      "pr_auc": 0.05179474013412268,
+      "confusion_matrix": [
+        [
+          180,
+          0
+        ],
+        [
+          20,
+          0
+        ]
+      ],
+      "low_confidence_count": 193,
+      "abstain_rate": 0.965,
+      "status": "EXPERIMENT_COMPLETED"
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "CNN + LSTM hybrid deep learning experiment (Mission 31)."
+  },
+  {
+    "experiment_id": "EXP_007_ADVANCED_MODEL_DECISION",
+    "timestamp": "2026-09-03T16:21:39.921816",
+    "model_type": "Transformer_Decision",
+    "hyperparameters": {
+      "decision": "OPTION_B",
+      "reason": "Insufficient dataset size (400 train windows) for self-attention parameters."
+    },
+    "dataset_id": "chbmit",
+    "split_protocol": "Protocol A \u2014 Patient-Independent Holdout",
+    "seed": 42,
+    "preprocessing_version": "v1.0",
+    "feature_schema_version": "N/A",
+    "metrics": {
+      "status": "OPTION_B_NOT_JUSTIFIED",
+      "justification": "High overfitting risk, parameter ratio < 0.002, deep models underperformed classical feature ML."
+    },
+    "status": "EXPERIMENT_COMPLETED",
+    "notes": "Mission 32 decision-first analysis. Option B selected."
+  }
+]

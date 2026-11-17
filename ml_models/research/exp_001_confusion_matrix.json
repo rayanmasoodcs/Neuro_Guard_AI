@@ -1,0 +1,21 @@
+{
+  "experiment_id": "EXP_001_BASELINE_LOGISTIC_REGRESSION",
+  "confusion_matrix": [
+    [
+      180,
+      0
+    ],
+    [
+      0,
+      20
+    ]
+  ],
+  "classes": [
+    0,
+    1
+  ],
+  "class_names": [
+    "non_seizure",
+    "seizure"
+  ]
+}

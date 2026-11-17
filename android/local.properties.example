@@ -1,0 +1,4 @@
+# Flutter/Android local SDK paths. This file is a template only.
+# Copy to android/local.properties and adjust paths for your machine.
+sdk.dir=C:\\Android\\sdk
+flutter.sdk=C:\\src\\flutter
